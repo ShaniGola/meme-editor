@@ -1,0 +1,96 @@
+
+
+/* fonts */
+
+@font-face {
+    font-family: poppings;
+    src: url(fonts/Poppins-Light.ttf);
+}
+
+
+
+.gallery{
+    margin:0px 10px;
+    border-radius: 10px;
+    background-color: var(--clr1);
+}
+
+/* HEADER */
+header{
+    height: 100px;
+    align-items: center;
+    margin: 0 20px;
+}
+header > *{
+    flex-grow: 1;
+    flex-shrink: 1;
+    border-radius: 30px;
+    font-size: 20px;
+    margin:0px 10px;
+}
+header input{
+    height: 60px;
+    /* max-width: 540px; */
+    background-color: var(--clr2);
+    border:none;
+    color: var(--clr3)
+}
+
+input[type=text]{
+    padding-left: 25px;
+}
+
+header .searched-words{
+    height: 50px;
+    /* max-width: 540px; */
+    background-color: var(--clr3);
+    opacity: 0.400;
+    filter: drop-shadow(0px 3px 3.5px rgba(0,0,0,0.15));
+    color: blue;
+}
+
+header .more{
+    filter: drop-shadow(0px 3px 3.5px rgba(0,0,0,0.15));
+    background-image: linear-gradient(-86deg, #33bd6d 0%, #0b97b9 100%);
+}
+
+/* MAIN */
+
+.meme-display{
+    height: fit-content;
+    width: 95%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    place-items:center;
+}
+.img{
+    background-repeat: no-repeat;
+    background-size: contain;
+    height:150px;
+    border-radius: 5px;
+}
+
+/* OMPONENETS */
+
+.btn{
+    height: 35px;
+    max-width: 90px;
+    border-radius: 20px;
+}
+
+/* HELPERS */
+
+.flex{
+    display:flex;
+}
+
+.space-between{
+    justify-content: space-between;
+}
+
+.centered{
+    justify-content: center;
+    align-items: center;
+}

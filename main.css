@@ -1,0 +1,25 @@
+@import url(gallery.css);
+
+/* vars */
+:root{
+    /* colors */
+    --clr1: #383b42;
+    --clr2: #22252c;
+    --clr3: #fefefe;
+    --clr4: #22252c;
+    /* widhts */
+    --s: 600px;
+    --m: 800px;
+    --l: 980px;
+
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    font-family: poppings;
+}
+
+body{
+    background-color: var(--clr4);
+}

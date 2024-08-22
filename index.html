@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="main.css" rel="stylesheet">
+</head>
+<body onload="init()">
+    <header>MEME EDITOR
+        <nav>
+            <ul>
+                <li>Gallery</li>
+                <li>About</li>
+            </ul>
+        </nav>
+    </header>
+    <section class="gallery">
+        <header class="flex space-between">
+            <input type="text" placeholder="Search"/>
+            <div class="searched-words flex centered"><p>Funny Animal Men Women Cat Banana</p></div>
+            <button class="btn more">More</button>
+        </header>
+        <main class="meme-display grid">
+
+        </main>
+
+    </section>
+
+    <section class="editor">
+        <h2>the editor!</h2>
+        <div class="editor grid">
+            <canvas id="my-canvas" height="400px" width="400px"  style="outline: 1px solid green"></canvas>
+            <div class="design-meme">
+                <input id="meme-text" placeholder="write text" />
+                <label for="meme-text">add text!</label>
+            </div>
+        </div>
+
+    </section>
+    <script src="../utils.js"></script>
+    <script src="memeService.js"></script>
+    <script src="memeController.js"></script>
+    <script src="galleryController.js"></script>
+</body>
+</html>
