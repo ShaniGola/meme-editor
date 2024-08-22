@@ -57,8 +57,9 @@ header .more{
 /* MAIN */
 
 .meme-display{
-    height: fit-content;
+    height: 250px;
     width: 95%;
+    overflow-y: scroll;
     margin: auto;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -93,4 +94,20 @@ header .more{
 .centered{
     justify-content: center;
     align-items: center;
+}
+
+/* scrollbar */
+
+.meme-display::-webkit-scrollbar{
+    /* padding-right: 30px; */
+    width:10px;
+}
+.meme-display::-webkit-scrollbar-track{
+    background: var(--clr2);
+    border-radius: 5px;
+}
+
+.meme-display::-webkit-scrollbar-thumb{
+    background-image: linear-gradient(-86deg, #33bd6d 0%, #0b97b9 100%);
+    border-radius: 5px;
 }
