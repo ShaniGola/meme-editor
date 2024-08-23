@@ -4,18 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="main.css" rel="stylesheet">
 </head>
 <body onload="init()">
-    <header>MEME EDITOR
+    <header class="page-header flex space-around">
+        <img  class="logo-img" src="pics/LOGO.png" />
         <nav>
-            <ul>
-                <li>Gallery</li>
-                <li>About</li>
+            <ul class="clean-list flex space-between">
+                <li><a id="gallery" href="#">Gallery</a></li>
+                <li><a id="about" href="#">About</a></li>
             </ul>
         </nav>
     </header>
-    <section class="gallery">
+
+    <section class="gallery" hidden>
         <header class="flex space-between">
             <input type="text" placeholder="Search"/>
             <div class="searched-words flex centered"><p>Funny Animal Men Women Cat Banana</p></div>
@@ -27,15 +31,37 @@
 
     </section>
 
-    <section class="editor" hidden>
-        <h2>the editor!</h2>
-        <div class="editor grid">
-            <canvas id="my-canvas" height="400px" width="400px"  style="outline: 1px solid green"></canvas>
-            <div class="design-meme">
-                <input id="meme-text" placeholder="write text" />
-                <label for="meme-text">add text!</label>
-            </div>
+    <section class="editor flex wrap space-around">
+        <div class="canvas-container">
+            <canvas id="my-canvas" height="500px" width="500px"  style="outline: 1px solid green"></canvas>
         </div>
+        <div class="design-meme flex column space-between">
+            <input class="text-box" placeholder="write text" />
+            <section class="row-edit flex">
+                <button class="squared-btn change-row"><i class="material-icons white">swap_vert</i></button>
+                <button class="squared-btn add-row"><i class="material-icons white">add</i></button>
+                <button class="squared-btn delete-row"><i class="material-icons white">delete</i></button>
+            </section>
+            <section class="text-style flex wrap space-around">
+                <button class="squared-btn"><i class="material-icons">text_increase</i></button>
+                <button class="squared-btn"><i class="material-icons">text_decrease</i></button>
+                <button class="squared-btn"><i class="material-icons">format_align_left</i></button>
+                <button class="squared-btn"><i class="material-icons">format_align_center</i></button>
+                <button class="squared-btn"><i class="material-icons">format_align_right</i></button>
+                <select class="select-font">
+                    <option value="impact">IMPACT</option>
+                    <option value="ariel">ARIEL</option>
+                    <option value="times">TIMES</option>
+                </select>
+                <button class="squared-btn underline"><i class="material-icons">format_underlined</i></button>
+                <button class="squared-btn change-color"><input type="color" value="#ffffff"/><i class="material-icons">palette</i></button>
+            </section>
+            <section class="export-meme flex space-between">
+                <button class="rect-btn share"><i class="material-icons">share</i></button>
+                <button class="rect-btn download"><a href="#" class="download-href" download="my-meme.jpg" ></a><i class="material-icons">download</i></button>
+            </section>
+        </div>
+        
 
     </section>
     <script src="../utils.js"></script>

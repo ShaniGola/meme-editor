@@ -15,7 +15,7 @@ function init(){
 
 }
 function addListeners(){
-    const input = document.querySelector('#meme-text')
+    const input = document.querySelector('.text-box')
     input.addEventListener('keydown', onWriteChar)
 }
 

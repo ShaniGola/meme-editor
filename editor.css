@@ -1,0 +1,144 @@
+.editor{
+    height: 84vh;
+    margin:2vh 10px;
+    width: 95%;
+}
+
+/* LAYOUT */
+
+.canvas-container,
+.design-meme,
+#my-canvas{
+    height: 100%;
+}
+
+/* COMPONENTS */
+
+.squared-btn,
+.rect-btn{
+    height: 50px;
+}
+.squared-btn{
+    width: 50px;
+    border-radius: 10px;
+}
+
+.rect-btn{
+    width: 200px;
+    border-radius: 15px;
+}
+
+.material-icons{ 
+    font-size: 30px;
+    line-height: 1.6;
+    font-weight: 900;
+}
+
+/* CANVAS */
+
+#my-canvas{
+    border-radius: 30px;
+}
+
+/* DESIGN AREA */
+
+.design-meme{
+    border-radius: 30px;
+    background-color: var(--clr1);
+    height: 100%;
+    width: 500px;
+    align-items: center;
+}
+
+/* ROW-EDIT */
+.row-edit{
+    margin: auto;
+}
+.row-edit > *:not(:last-child){
+    margin-right: 15px;
+} 
+.row-edit > *{
+    color:white;
+}
+.change-row{
+    box-shadow: inset 0px 2px 0px rgba(255,255,255,0.58);
+    background-image: linear-gradient(-38deg, #65c3db 0%, #3fb1cd 50%, #0b97bb 100%);}
+
+.add-row{
+    box-shadow: inset 0px 2px 0px rgba(255,255,255,0.58);
+    background-image: linear-gradient(-38deg, #42eb5c 0%, #37b349 100%, #37b349 100%);
+}
+
+.delete-row{
+    box-shadow: inset 0px 2px 0px rgba(255,255,255,0.58);
+    background-image: linear-gradient(-38deg, #cf1d37 0%, #cf1d37 1%, #ef5036 100%);
+}
+
+
+/* TEXT-BOX */
+
+.text-box{
+    height: 55px;
+    width: 90%;
+    justify-self: center;
+    border-radius: 30px;
+    margin: 20px 0;
+    border: none;
+}
+.text-box::placeholder{
+    padding: 2%;
+}
+
+/* TEXT-STYLE */
+
+.text-style{
+    background-color: #19a59f;
+    border-radius: 15px;
+    width: 90%;
+    margin: auto;
+}
+.text-style > *{
+    margin: 10px;
+}
+
+.text-style .squared-btn{
+    box-shadow: inset 0px 5px 0px rgba(255,255,255,0.58);
+    background-color: #ffffff;
+} 
+
+.change-color{
+    position: relative;
+}
+
+.change-color input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.select-font{
+    border-radius: 10px;
+    width: 230px;
+    border: 2px solid black;
+}
+
+/* EXPORT MEME */
+
+.export-meme{
+    width: 90%;
+    margin: auto;
+}
+
+.share{
+    box-shadow: inset 0px 2px 0px rgba(255,255,255,0.58);
+    background-color: #1e7cd3;
+}
+
+.download{
+    box-shadow: inset 0px 2px 0px rgba(255,255,255,0.58);
+    background-color: #8f44bb;
+}
