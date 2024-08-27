@@ -1,38 +1,22 @@
 var gElCanvas;
 var gCtx;
-// gShifted = {""}
 var gText = ''
 const reg = new RegExp('[^a-zA-Z0-9!@#$%^&*()<>?":{}]', 'g');
 
 function init(){
     gElCanvas = document.getElementById('my-canvas')
     gCtx = gElCanvas.getContext('2d')
-    addListeners()
     createImgs()
-    
     renderGallery()
-    // renderMeme()
-
-}
-function addListeners(){
-    const input = document.querySelector('.text-box')
-    input.addEventListener('keydown', onWriteChar)
 }
 
-function onWriteChar(ev){
+
+function onWriteChar(){
     const meme = getMeme()
     const line = meme.selectedLineIdx
-    var key = ev.key
-    var txt = meme.lines[line].txt
-    if(key.length === 1){
-        setLineText(txt += key)
-    }
-    else if(key === 'Backspace' && txt.length > 0){
-        setLineText(txt.slice(0, -1))
-        // gCurrMeme.lines[line].txt = gCurrMeme.lines[line].txt.slice(0, -1)
-    }
-    console.log(getMeme().lines[line].txt)
-    if(reg.test(getMeme().lines[line].txt)){
+    var val = document.querySelector('.text-box').value
+    setLineText(val)
+    if(reg.test(val)){
         gElCanvas.setAttribute('dir', 'rtl')
     }
     else{
@@ -43,27 +27,74 @@ function onWriteChar(ev){
 
 function drawText() {
     const meme = getMeme()
+    const font = meme.font
     var x;
     var y;
     gCtx.lineWidth = 2
-    gCtx.font = "40px arial";
     gCtx.textBaseline = 'middle'
-    gCtx.strokeStyle = 'brown'
     meme.lines.forEach((line, Idx) => {
-        gCtx.fillStyle = line.color
+        gCtx.font = `${line.size}px ${font}`;
+        gCtx.strokeStyle = line.color
         gCtx.textAlign = line.align
-        if(Idx === 0){
-            x = gElCanvas.width / 2
-            y = 30
+        x = getX(line)
+        y = getY(Idx)
+        if(Idx === meme.selectedLineIdx){
+            drawBackground(y, line.size)
         }
-        else if(Idx === 1){
-            x = gElCanvas.width / 2
-            y = gElCanvas.height - 30
+        if(line.underline){
+            drawUnderline(x, y, line, line.align)
         }
+        fitText(line, font)
         gCtx.fillText(line.txt, x, y) 
         gCtx.strokeText(line.txt, x, y) 
     })
+}
 
+function getX(line){
+    if(line.align === "center"){
+        return gElCanvas.width / 2
+    }
+    else if(line.align === "left"){
+        return 0
+    }
+    return gElCanvas.width
+}
+
+function getY(Idx){
+    if(Idx === 0){
+        return 50
+    }
+    else if(Idx === 1){
+        return gElCanvas.height - 50
+    }
+    return gElCanvas.height / 2
+}
+
+function fitText(line, font){
+    var i = 0
+    while(gCtx.measureText(line.txt).width > gElCanvas.width){
+        var size = line.size
+        gCtx.font = `${size - i}px ${font}`
+        i += 1
+    }
+}
+
+function drawBackground(y, height){
+    gCtx.fillStyle = "rgb(231, 248, 255, 0.5)"
+    gCtx.fillRect(0, y-0.5*height, gElCanvas.width, height)
+}
+
+function drawUnderline(x, y, line, align){
+    if(align === "center"){
+        x = x - (gCtx.measureText(line.txt).width / 2)
+    }
+    else if(align === "right"){
+        x = x - gCtx.measureText(line.txt).width
+    }
+    gCtx.beginPath()
+    gCtx.moveTo(x, (y + line.size / 2) - 2)
+    gCtx.lineTo(x + gCtx.measureText(line.txt).width, (y + line.size / 2) - 2)
+    gCtx.stroke()
 }
 
 function renderMeme(){
@@ -72,19 +103,69 @@ function renderMeme(){
     img.src = getImgUrl(meme.selectedImgId)
     img.onload = () => {
         renderImg(img)
-        drawText(gElCanvas.width/2, 30)}
+        drawText()}
 }
-
 
 function renderImg(img) {
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)   
 }
 
-function onImgSelect(path){
-    setImg(path)
+function onImgSelect(Idx){
+    switchDisplay()
+    setImg(Idx)
     renderMeme()
 }
 
+function onAddRow(){
+    addRow()
+    document.querySelector(".text-box").value = ''
+    renderMeme()
+}
+
+function onSwitchRow(){
+    switchRow()
+    renderMeme()
+}
+
+function onDeleteRow(){
+    deleteRow()
+    document.querySelector(".text-box").value = ''
+    renderMeme()
+}
+
+function onChangeFontSize(sign){
+    changeFontSize(sign)
+    renderMeme()
+}
+
+function onChangeAlign(where){
+    changeAlign(where)
+    renderMeme()
+}
+
+function onChangeFont(font){
+    changeFont(font)
+    renderMeme()
+}
+
+function onUnderlineRow(){
+    underlineRow()
+    renderMeme()
+    console.log(gCtx.measureText(getMeme().lines[0].txt))
+}
+
+function onChangeColor(newColor){
+    changeColor(newColor)
+    renderMeme()
+    document.querySelector(".change-color").value = newColor
+}
+
+function onDownload(){
+    const elLink = document.querySelector(".download-href")
+    const imgContent = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
+    elLink.href = imgContent
+    elLink.download = "my-canvas.jpg"
+}
 // function onImgInput(ev) {
 //     loadImageFromInput(ev, renderImg)
 // }

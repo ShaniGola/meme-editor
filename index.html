@@ -13,13 +13,13 @@
         <img  class="logo-img" src="pics/LOGO.png" />
         <nav>
             <ul class="clean-list flex space-between">
-                <li><a id="gallery" href="#">Gallery</a></li>
+                <li><a id="gallery" class="pressed" href="#" onclick="onClickGallery()">Gallery</a></li>
                 <li><a id="about" href="#">About</a></li>
             </ul>
         </nav>
     </header>
 
-    <section class="gallery" hidden>
+    <section class="gallery">
         <header class="flex space-between">
             <input type="text" placeholder="Search"/>
             <div class="searched-words flex centered"><p>Funny Animal Men Women Cat Banana</p></div>
@@ -31,40 +31,42 @@
 
     </section>
 
-    <section class="editor flex wrap space-around">
+    <section class="editor flex wrap space-around hidden">
         <div class="canvas-container">
             <canvas id="my-canvas" height="500px" width="500px"  style="outline: 1px solid green"></canvas>
         </div>
         <div class="design-meme flex column space-between">
-            <input class="text-box" placeholder="write text" />
+            <input type="text" class="text-box" oninput="onWriteChar()"  placeholder="write text"/>
             <section class="row-edit flex">
-                <button class="squared-btn change-row"><i class="material-icons white">swap_vert</i></button>
-                <button class="squared-btn add-row"><i class="material-icons white">add</i></button>
-                <button class="squared-btn delete-row"><i class="material-icons white">delete</i></button>
+                <button class="squared-btn change-row" onclick="onSwitchRow()"><i class="material-icons white">swap_vert</i></button>
+                <button class="squared-btn add-row" onclick="onAddRow()"><i class="material-icons white">add</i></button>
+                <button class="squared-btn delete-row" onclick="onDeleteRow()"><i class="material-icons white">delete</i></button>
             </section>
             <section class="text-style flex wrap space-around">
-                <button class="squared-btn"><i class="material-icons">text_increase</i></button>
-                <button class="squared-btn"><i class="material-icons">text_decrease</i></button>
-                <button class="squared-btn"><i class="material-icons">format_align_left</i></button>
-                <button class="squared-btn"><i class="material-icons">format_align_center</i></button>
-                <button class="squared-btn"><i class="material-icons">format_align_right</i></button>
-                <select class="select-font">
-                    <option value="impact">IMPACT</option>
-                    <option value="ariel">ARIEL</option>
-                    <option value="times">TIMES</option>
+                <button class="squared-btn" onclick="onChangeFontSize(1)"><i class="material-icons">text_increase</i></button>
+                <button class="squared-btn" onclick="onChangeFontSize(-1)"><i class="material-icons">text_decrease</i></button>
+                <button class="squared-btn" onclick="onChangeAlign('left')"><i class="material-icons">format_align_left</i></button>
+                <button class="squared-btn" onclick="onChangeAlign('center')"><i class="material-icons">format_align_center</i></button>
+                <button class="squared-btn" onclick="onChangeAlign('right')"><i class="material-icons">format_align_right</i></button>
+                <select class="select-font" onchange="onChangeFont(this.value)">
+                    <option value="Impact">IMPACT</option>
+                    <option value="Ariel">ARIEL</option>
+                    <option value="sans-serif">SANS-SERIF</option>
                 </select>
-                <button class="squared-btn underline"><i class="material-icons">format_underlined</i></button>
-                <button class="squared-btn change-color"><input type="color" value="#ffffff"/><i class="material-icons">palette</i></button>
+                <button class="squared-btn underline" onclick="onUnderlineRow()"><i class="material-icons">format_underlined</i></button>
+                <button class="squared-btn change-color"><input type="color" value="#ffffff" oninput="onChangeColor(this.value)"/><i class="material-icons">palette</i></button>
             </section>
             <section class="export-meme flex space-between">
                 <button class="rect-btn share"><i class="material-icons">share</i></button>
-                <button class="rect-btn download"><a href="#" class="download-href" download="my-meme.jpg" ></a><i class="material-icons">download</i></button>
+                
+                <a href="#" class="download-href" download="my-meme.jpg"><button class="rect-btn download" onclick="onDownload()"><i class="material-icons">download</i></button></a>
             </section>
         </div>
-        
-
     </section>
+
+
     <script src="../utils.js"></script>
+    <script src="main.js"></script>
     <script src="memeService.js"></script>
     <script src="memeController.js"></script>
     <script src="galleryController.js"></script>

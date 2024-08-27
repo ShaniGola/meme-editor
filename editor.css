@@ -3,7 +3,6 @@
     margin:2vh 10px;
     width: 95%;
 }
-
 /* LAYOUT */
 
 .canvas-container,
@@ -85,8 +84,8 @@
     margin: 20px 0;
     border: none;
 }
-.text-box::placeholder{
-    padding: 2%;
+input[type=text]{
+    padding-left: 2%;
 }
 
 /* TEXT-STYLE */
