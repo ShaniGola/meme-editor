@@ -1,17 +1,23 @@
 var gElCanvas;
 var gCtx;
 var gText = ''
+var gBackground = true
 const reg = new RegExp('[^a-zA-Z0-9!@#$%^&*()<>?":{}]', 'g');
 
 function init(){
     gElCanvas = document.getElementById('my-canvas')
     gCtx = gElCanvas.getContext('2d')
     createImgs()
-    renderGallery()
+    renderGallery(gImgs)
+    gWordSearchCounts = getFromStorage(COUNTSMAP)
+    if(!gWordSearchCounts){
+        gWordSearchCounts = new Map()
+    }
+    renderSearchedWords()
 }
 
 
-function onWriteChar(){
+function onWriteChar(val){
     const meme = getMeme()
     const line = meme.selectedLineIdx
     var val = document.querySelector('.text-box').value
@@ -38,7 +44,7 @@ function drawText() {
         gCtx.textAlign = line.align
         x = getX(line)
         y = getY(Idx)
-        if(Idx === meme.selectedLineIdx){
+        if(gBackground && Idx === meme.selectedLineIdx){
             drawBackground(y, line.size)
         }
         if(line.underline){
@@ -162,9 +168,16 @@ function onChangeColor(newColor){
 
 function onDownload(){
     const elLink = document.querySelector(".download-href")
+    gBackground = false
+    renderMeme()
     const imgContent = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
     elLink.href = imgContent
     elLink.download = "my-canvas.jpg"
+    gBackground = true
+}
+
+function onShare(){
+
 }
 // function onImgInput(ev) {
 //     loadImageFromInput(ev, renderImg)

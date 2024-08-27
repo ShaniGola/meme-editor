@@ -17,6 +17,12 @@
 .rect-btn{
     height: 50px;
 }
+
+.squared-btn:hover,
+.rect-btn:hover{
+    cursor: pointer;
+}
+
 .squared-btn{
     width: 50px;
     border-radius: 10px;
@@ -123,6 +129,10 @@ input[type=text]{
     border-radius: 10px;
     width: 230px;
     border: 2px solid black;
+}
+
+.select-font:hover{
+    cursor: pointer;
 }
 
 /* EXPORT MEME */

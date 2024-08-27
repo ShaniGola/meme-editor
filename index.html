@@ -21,9 +21,22 @@
 
     <section class="gallery">
         <header class="flex space-between">
-            <input type="text" placeholder="Search"/>
-            <div class="searched-words flex centered"><p>Funny Animal Men Women Cat Banana</p></div>
-            <button class="btn more">More</button>
+            <input type="text" placeholder="Search" oninput="onSearchImgs(this.value)"/>
+            <div class="searched-words">
+                <ul class="clean-list flex space between words-bar">
+                    <!-- <li><a href="#" id="funny" onclick="onSearchImgs(this.id)">Funny</a></li>
+                    <li><a href="#" id="cat">Cats</a></li>
+                    <li><a href="#" id="politics">Politics</a></li>
+                    <li><a href="#" id="baby">Babies</a></li>
+                    <li><a href="#" id="cute">Cute</a></li> -->
+                </ul>
+                <div class="modal hidden">
+                    <ul class="clean-list flex wrap space-between modal-ul">
+
+                    </ul>
+                </div>
+            </div>
+            <button class="btn more" onclick="onOpenModal()">More</button>
         </header>
         <main class="meme-display grid">
 
@@ -36,7 +49,7 @@
             <canvas id="my-canvas" height="500px" width="500px"  style="outline: 1px solid green"></canvas>
         </div>
         <div class="design-meme flex column space-between">
-            <input type="text" class="text-box" oninput="onWriteChar()"  placeholder="write text"/>
+            <input type="text" class="text-box" oninput="onWriteChar(this.value)"  placeholder="write text"/>
             <section class="row-edit flex">
                 <button class="squared-btn change-row" onclick="onSwitchRow()"><i class="material-icons white">swap_vert</i></button>
                 <button class="squared-btn add-row" onclick="onAddRow()"><i class="material-icons white">add</i></button>
@@ -57,7 +70,9 @@
                 <button class="squared-btn change-color"><input type="color" value="#ffffff" oninput="onChangeColor(this.value)"/><i class="material-icons">palette</i></button>
             </section>
             <section class="export-meme flex space-between">
-                <button class="rect-btn share"><i class="material-icons">share</i></button>
+                
+                <a href="#" class="share-href" target="_blank"><button class="rect-btn share" onclick="onShare()"><i class="material-icons">share</i></button></a>
+                
                 
                 <a href="#" class="download-href" download="my-meme.jpg"><button class="rect-btn download" onclick="onDownload()"><i class="material-icons">download</i></button></a>
             </section>
@@ -67,8 +82,9 @@
 
     <script src="../utils.js"></script>
     <script src="main.js"></script>
+    <script src="galleryService.js"></script>
+    <script src="galleryController.js"></script>
     <script src="memeService.js"></script>
     <script src="memeController.js"></script>
-    <script src="galleryController.js"></script>
 </body>
 </html>

@@ -59,12 +59,12 @@ nav ul{
     padding-right: 20px
 }
 
-ul a:hover{
+nav ul a:hover{
     background-color: white;
     color: var(--clr5);
 }
 
-ul a{
+nav ul a{
     padding: 0 10px;
     border-radius: 20px;
     text-decoration-line: none;
@@ -103,6 +103,5 @@ ul a{
 
 .hidden{
     display: none;
-color:rgb(231, 248, 255)
-
+    color:rgb(231, 248, 255)
 }

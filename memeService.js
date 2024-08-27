@@ -1,12 +1,6 @@
-var gImgs = []
+
 var gMeme;
-const gCategories = [['politics', 'funny'], ['dog', 'pets', 'cute'], ['baby', 'dog', 'cute'], ['cat', 'cute'], ['baby', 'funny'], ['funny'], ['baby', 'cute'], ['man'], ['baby'], ['man', 'politics', 'funny'], ['kiss'], ['man'], ['man', 'cheers'], ['man', 'upset'], ['man'], ['man', 'funny'], ['man', 'politics'], ['cartoon']]
-var wordSearchCounts = {}
-function createImgs(){
-    for(var i = 1; i < 19; i++){
-        gImgs.push({id: i-1, url: `pics/${i}.jpg`, keywords: gCategories[i-1]})
-    }
-}
+
 
 function getMeme(){
     return gMeme

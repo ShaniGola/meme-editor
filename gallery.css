@@ -22,7 +22,7 @@ header input{
     height: 60px;
     /* max-width: 540px; */
     background-color: var(--clr2);
-    border:none;
+    border: none;
     color: var(--clr3)
 }
 
@@ -33,10 +33,27 @@ input[type=text]{
 header .searched-words{
     height: 50px;
     /* max-width: 540px; */
-    background-color: var(--clr3);
-    opacity: 0.400;
+    background-color: rgba(254, 254, 254, 0.2);
+    /* --clr3 */
     filter: drop-shadow(0px 3px 3.5px rgba(0,0,0,0.15));
-    color: blue;
+    position: relative;
+}
+
+header .searched-words ul{
+    width:100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header .searched-words ul li{
+    padding: 0 10px;
+}
+header .searched-words ul a{
+    color:black ;
+    text-decoration-line: none;
+    text-transform: capitalize;
 }
 
 header .more{
@@ -78,6 +95,19 @@ header .more{
 .btn:hover{
     cursor: pointer;
 }
+/* MODAL */
+.modal{
+    background-color: rgb(210, 210, 175);
+    position: absolute;
+    top: 0;
+    width:100%;
+    height: 200%;
+    border-radius: 25px;
+}
+.modal a{
+    text-transform: capitalize;
+}
+
 
 /* HELPERS */
 
@@ -102,3 +132,6 @@ header .more{
     background-image: var(--gradient);
     border-radius: 5px;
 }
+
+
+
