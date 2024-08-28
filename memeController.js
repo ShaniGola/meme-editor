@@ -1,21 +1,7 @@
 var gElCanvas;
 var gCtx;
-var gText = ''
-var gBackground = true
+var gBackground;
 const reg = new RegExp('[^a-zA-Z0-9!@#$%^&*()<>?":{}]', 'g');
-
-function init(){
-    gElCanvas = document.getElementById('my-canvas')
-    gCtx = gElCanvas.getContext('2d')
-    createImgs()
-    renderGallery(gImgs)
-    gWordSearchCounts = getFromStorage(COUNTSMAP)
-    if(!gWordSearchCounts){
-        gWordSearchCounts = new Map()
-    }
-    renderSearchedWords()
-}
-
 
 function onWriteChar(val){
     const meme = getMeme()
@@ -45,6 +31,7 @@ function drawText() {
         x = getX(line)
         y = getY(Idx)
         if(gBackground && Idx === meme.selectedLineIdx){
+            console.log(gBackground)
             drawBackground(y, line.size)
         }
         if(line.underline){
@@ -54,6 +41,7 @@ function drawText() {
         gCtx.fillText(line.txt, x, y) 
         gCtx.strokeText(line.txt, x, y) 
     })
+    gBackground = true
 }
 
 function getX(line){
@@ -157,7 +145,6 @@ function onChangeFont(font){
 function onUnderlineRow(){
     underlineRow()
     renderMeme()
-    console.log(gCtx.measureText(getMeme().lines[0].txt))
 }
 
 function onChangeColor(newColor){
@@ -167,34 +154,15 @@ function onChangeColor(newColor){
 }
 
 function onDownload(){
-    const elLink = document.querySelector(".download-href")
     gBackground = false
+    console.log("in download", gBackground)
+    const elLink = document.querySelector(".download-href")
     renderMeme()
     const imgContent = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
     elLink.href = imgContent
     elLink.download = "my-canvas.jpg"
-    gBackground = true
 }
 
 function onShare(){
 
 }
-// function onImgInput(ev) {
-//     loadImageFromInput(ev, renderImg)
-// }
-
-// function loadImageFromInput(ev, onImageReady) {
-//     const reader = new FileReader()
-//     // After we read the file
-//     reader.onload = (event) => {
-//         let img = new Image() // Create a new html img element
-//         img.src = event.target.result // Set the img src to the img file we read
-//         // Run the callBack func, To render the img on the canvas
-//         img.onload = () => onImageReady(img)
-//     }
-
-
-//     reader.readAsDataURL(ev.target.files[0]) // Read the file we picked
-
-
-// }

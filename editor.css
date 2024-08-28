@@ -1,15 +1,22 @@
 .editor{
     height: 84vh;
-    margin:2vh 10px;
+    margin:2vh auto;
     width: 95%;
+    /* margin:  ; */
+    align-items: center;
 }
 /* LAYOUT */
 
 .canvas-container,
-.design-meme,
-#my-canvas{
-    height: 100%;
+.design-meme{
+    width: 85%;
+    aspect-ratio: 1/1;
+    /* margin-bottom: 10px; */
 }
+/* .design-meme{
+    height:70%;
+    width: 350px;
+} */
 
 /* COMPONENTS */
 
@@ -29,8 +36,8 @@
 }
 
 .rect-btn{
-    width: 200px;
     border-radius: 15px;
+    width:150px;
 }
 
 .material-icons{ 
@@ -43,6 +50,7 @@
 
 #my-canvas{
     border-radius: 30px;
+    height: 100%;
 }
 
 /* DESIGN AREA */
@@ -50,8 +58,8 @@
 .design-meme{
     border-radius: 30px;
     background-color: var(--clr1);
-    height: 100%;
-    width: 500px;
+    /* height: 100%;
+    width: 500px; */
     align-items: center;
 }
 
@@ -87,10 +95,10 @@
     width: 90%;
     justify-self: center;
     border-radius: 30px;
-    margin: 20px 0;
+    margin: 10px 0 10px;
     border: none;
 }
-input[type=text]{
+.text-box input[type=text]{
     padding-left: 2%;
 }
 
@@ -127,7 +135,7 @@ input[type=text]{
 
 .select-font{
     border-radius: 10px;
-    width: 230px;
+    width: 200px;
     border: 2px solid black;
 }
 
@@ -151,3 +159,57 @@ input[type=text]{
     box-shadow: inset 0px 2px 0px rgba(255,255,255,0.58);
     background-color: #8f44bb;
 }
+
+@media(min-width: 830px){
+    .canvas-container{
+        width: unset;
+        height:80%;
+        aspect-ratio: 1/1;
+        /* margin-bottom: 10px; */
+    }
+    .design-meme{
+        width: unset;
+        height:80%;
+        width: 350px;
+    }
+    .select-font{
+        width: 200px;
+    }
+    
+}
+
+@media(min-width: 1100px){
+    .editor{
+        align-items: center;
+    }
+    .canvas-container,
+    .design-meme{
+        height: 100%;
+        aspect-ratio: 1/1;
+    }
+    .design-meme{
+        width: 500px;
+    }
+    .rect-btn{
+        width: 200px;
+    }
+   
+    .select-font{ 
+        width: 230px;
+    }
+
+}
+
+
+/* @media(min-width: 850px){
+    .design-meme{
+        max-width: 100%;
+    }
+    .canvas-container,
+    .design-meme{
+        height:100%;
+        aspect-ratio: 1/1;
+    }
+ 
+
+} */

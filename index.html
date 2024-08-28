@@ -22,13 +22,9 @@
     <section class="gallery">
         <header class="flex space-between">
             <input type="text" placeholder="Search" oninput="onSearchImgs(this.value)"/>
-            <div class="searched-words">
-                <ul class="clean-list flex space between words-bar">
-                    <!-- <li><a href="#" id="funny" onclick="onSearchImgs(this.id)">Funny</a></li>
-                    <li><a href="#" id="cat">Cats</a></li>
-                    <li><a href="#" id="politics">Politics</a></li>
-                    <li><a href="#" id="baby">Babies</a></li>
-                    <li><a href="#" id="cute">Cute</a></li> -->
+            <div class="words-bar-container">
+                <ul class="clean-list flex space-between words-bar">
+
                 </ul>
                 <div class="modal hidden">
                     <ul class="clean-list flex wrap space-between modal-ul">
@@ -81,10 +77,10 @@
 
 
     <script src="../utils.js"></script>
-    <script src="main.js"></script>
     <script src="galleryService.js"></script>
     <script src="galleryController.js"></script>
     <script src="memeService.js"></script>
     <script src="memeController.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>

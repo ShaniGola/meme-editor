@@ -42,7 +42,8 @@ body{
     width: 98vw;
     margin: 2vh auto;
     border-radius: 35px;
-    background-image: var(--gradient)
+    background-image: var(--gradient);
+    align-items: center;
 }
 
 .logo-img{

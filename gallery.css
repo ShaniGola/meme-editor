@@ -6,20 +6,24 @@
 }
 
 /* HEADER */
-header{
-    height: 100px;
+
+.gallery header{
+    flex-direction: column;
+    justify-items: space-around;
     align-items: center;
-    margin: 0 20px;
 }
-header > *{
+
+.gallery header > *{
     flex-grow: 1;
     flex-shrink: 1;
     border-radius: 30px;
     /* font-size: 1.2rem; */
-    margin:0px 10px;
+    margin:10px 10px;
 }
-header input{
-    height: 60px;
+
+.gallery header input{
+    height: 50px;
+    width: 95%;
     /* max-width: 540px; */
     background-color: var(--clr2);
     border: none;
@@ -30,27 +34,27 @@ input[type=text]{
     padding-left: 25px;
 }
 
-header .searched-words{
+header .words-bar-container{
     height: 50px;
-    /* max-width: 540px; */
+    width: 95%;
     background-color: rgba(254, 254, 254, 0.2);
     /* --clr3 */
     filter: drop-shadow(0px 3px 3.5px rgba(0,0,0,0.15));
     position: relative;
+    text-align: center;
 }
 
-header .searched-words ul{
-    width:100%;
+header .words-bar-container ul{
     height: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
 }
 
-header .searched-words ul li{
+.words-bar-container li{
     padding: 0 10px;
 }
-header .searched-words ul a{
+
+header .words-bar-container ul a{
     color:black ;
     text-decoration-line: none;
     text-transform: capitalize;
@@ -61,10 +65,14 @@ header .more{
     background-image: var(--gradient);
 }
 
+.words-bar li{
+    padding: 0 5px;
+}
+
 /* MAIN */
 
 .meme-display{
-    height: calc(84vh - 2vh - 100px);
+    height: calc(84vh - 2vh - 50px - 50px - 50px - 10px - 10px - 10px - 10px);
     width: 95%;
     overflow-y: scroll;
     margin: auto;
@@ -95,22 +103,22 @@ header .more{
 .btn:hover{
     cursor: pointer;
 }
+
 /* MODAL */
+
 .modal{
     background-color: rgb(210, 210, 175);
     position: absolute;
-    top: 0;
     width:100%;
-    height: 200%;
     border-radius: 25px;
+    top: -70px;
+    height: 120px;
 }
 .modal a{
     text-transform: capitalize;
 }
 
-
 /* HELPERS */
-
 
 .centered{
     justify-content: center;
@@ -120,7 +128,6 @@ header .more{
 /* scrollbar */
 
 .meme-display::-webkit-scrollbar{
-    /* padding-right: 30px; */
     width:10px;
 }
 .meme-display::-webkit-scrollbar-track{
@@ -132,6 +139,32 @@ header .more{
     background-image: var(--gradient);
     border-radius: 5px;
 }
+
+@media(min-width: 700px){
+    .gallery header{
+        flex-direction: row;
+    }
+
+    .words-bar li{
+        padding: 0 10px;
+    }
+
+    .meme-display{
+        height: calc(84vh - 2vh - 100px);
+    }
+    
+    .modal{
+        top: 0;
+    }
+}
+
+@media(min-width: 800px){
+    .gallery header{
+        align-items: center;
+        margin: 0 20px;
+    }
+}
+
 
 
 
