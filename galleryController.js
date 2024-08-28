@@ -6,7 +6,7 @@ function renderGallery(imgs){
     }
     
 function renderSearchedWords(){
-    const idx = window.innerWidth > 900 ? 5 : window.innerWidth < 700 ? 5: 3
+    const idx = window.innerWidth > 900 ? 5 : window.innerWidth < 700 ? 4: 3
     const words = ['funny', 'cats', 'politics', 'babies', 'cute'].slice(0, idx)
     const wordMap = getWordsMap()
     var searchBarEl = document.querySelector(".words-bar")
