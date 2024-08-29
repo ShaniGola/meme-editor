@@ -31,7 +31,6 @@ function drawText() {
         x = getX(line)
         y = getY(Idx)
         if(gBackground && Idx === meme.selectedLineIdx){
-            console.log(gBackground)
             drawBackground(y, line.size)
         }
         if(line.underline){

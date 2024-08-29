@@ -33,6 +33,8 @@
 .squared-btn{
     width: 50px;
     border-radius: 10px;
+    align-items: center;
+    justify-content: center;
 }
 
 .rect-btn{
@@ -44,16 +46,7 @@
     font-size: 30px;
     line-height: 1.6;
     font-weight: 900;
-    /* Support for all WebKit browsers. */
-    -webkit-font-smoothing: antialiased;
-    /* Support for Safari and Chrome. */
-    text-rendering: optimizeLegibility;
-
-    /* Support for Firefox. */
-    -moz-osx-font-smoothing: grayscale;
-
-    /* Support for IE. */
-    font-feature-settings: 'liga';
+    color: black;
 }
 
 /* CANVAS */
