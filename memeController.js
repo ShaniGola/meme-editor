@@ -1,11 +1,11 @@
+'use strict'
 var gElCanvas;
 var gCtx;
 var gBackground;
 const reg = new RegExp('[^a-zA-Z0-9!@#$%^&*()<>?":{}]', 'g');
+const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
 function onWriteChar(val){
-    const meme = getMeme()
-    const line = meme.selectedLineIdx
     var val = document.querySelector('.text-box').value
     setLineText(val)
     if(reg.test(val)){
@@ -25,22 +25,23 @@ function drawText() {
     gCtx.lineWidth = 2
     gCtx.textBaseline = 'middle'
     meme.lines.forEach((line, Idx) => {
+        x = line.pos.x
+        y = line.pos.y
         gCtx.font = `${line.size}px ${font}`;
         gCtx.strokeStyle = line.color
         gCtx.textAlign = line.align
-        x = getX(line)
-        y = getY(Idx)
-        if(gBackground && Idx === meme.selectedLineIdx){
+
+        if(Idx === getSelectedLineIdx()){
             drawBackground(y, line.size)
         }
         if(line.underline){
             drawUnderline(x, y, line, line.align)
         }
         fitText(line, font)
+        gCtx.fillStyle = "white"
         gCtx.fillText(line.txt, x, y) 
         gCtx.strokeText(line.txt, x, y) 
     })
-    gBackground = true
 }
 
 function getX(line){
@@ -73,6 +74,7 @@ function fitText(line, font){
 }
 
 function drawBackground(y, height){
+    if(!gBackground) return
     gCtx.fillStyle = "rgb(231, 248, 255, 0.5)"
     gCtx.fillRect(0, y-0.5*height, gElCanvas.width, height)
 }
@@ -97,6 +99,7 @@ function renderMeme(){
     img.onload = () => {
         renderImg(img)
         drawText()}
+    return img
 }
 
 function renderImg(img) {
@@ -106,12 +109,14 @@ function renderImg(img) {
 function onImgSelect(Idx){
     switchDisplay()
     setImg(Idx)
+    setRowPos(gElCanvas.width / 2, getY(getSelectedLineIdx()))
     renderMeme()
 }
 
 function onAddRow(){
     addRow()
     document.querySelector(".text-box").value = ''
+    setRowPos(gElCanvas.width / 2, getY(getSelectedLineIdx()))
     renderMeme()
 }
 
@@ -154,14 +159,65 @@ function onChangeColor(newColor){
 
 function onDownload(){
     gBackground = false
-    console.log("in download", gBackground)
-    const elLink = document.querySelector(".download-href")
     renderMeme()
+    const elLink = document.querySelector(".download-href")
     const imgContent = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
     elLink.href = imgContent
-    elLink.download = "my-canvas.jpg"
 }
 
 function onShare(){
 
+}
+
+function onDown(ev){
+    const pos = getEvPos(ev)
+    const row = findClickedRow(pos)
+    if(row === -1) return
+    switchRow(row)
+    setCurrRowDrag(true)
+    document.body.style.cursor = 'grabbing'
+}
+
+function onMove(ev){
+    const { drag, pos: rowPos} = getCurrRow()
+    const pos = getEvPos(ev)
+    changeCursor(pos)
+    if(!drag) return
+    const dx = pos.x - rowPos.x
+    const dy = pos.y - rowPos.y
+    moveRow(dx, dy)
+    renderMeme()
+}
+
+function onUp(ev){
+    setCurrRowDrag(false)
+    renderMeme()
+    document.body.style.cursor = 'grab'
+}
+
+function changeCursor(pos){
+    const { width: currCanvasWidth } = document.querySelector("#my-canvas").getBoundingClientRect()
+    if(checkHoveringRow(pos, currCanvasWidth)) document.body.style.cursor = 'grab'
+    else document.body.style.cursor = 'default'
+    return checkHoveringRow(pos, currCanvasWidth)
+}
+function getEvPos(ev) {
+    // Gets the offset pos , the default pos
+    let pos = {
+        x: ev.offsetX,
+        y: ev.offsetY,
+    }
+    // Check if its a touch ev
+    if (TOUCH_EVS.includes(ev.type)) {
+        //soo we will not trigger the mouse ev
+        ev.preventDefault()
+        //Gets the first touch point
+        ev = ev.changedTouches[0]
+        //Calc the right pos according to the touch screen
+        pos = {
+            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+        }
+    }
+    return pos
 }

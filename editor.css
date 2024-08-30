@@ -33,9 +33,6 @@
 .squared-btn{
     width: 50px;
     border-radius: 10px;
-    align-items: center;
-    justify-content: center;
-    padding:0;
 }
 
 .rect-btn{
@@ -54,7 +51,7 @@
 
 #my-canvas{
     border-radius: 30px;
-    height: 100%;
+   
 }
 
 /* DESIGN AREA */
@@ -74,7 +71,7 @@
 .row-edit > *:not(:last-child){
     margin-right: 15px;
 } 
-.row-edit > *{
+.row-edit .material-icons{
     color:white;
 }
 .change-row{
@@ -201,19 +198,4 @@
     .select-font{ 
         width: 230px;
     }
-
 }
-
-
-/* @media(min-width: 850px){
-    .design-meme{
-        max-width: 100%;
-    }
-    .canvas-container,
-    .design-meme{
-        height:100%;
-        aspect-ratio: 1/1;
-    }
- 
-
-} */
