@@ -71,9 +71,9 @@
 .row-edit > *:not(:last-child){
     margin-right: 15px;
 } 
-/* .row-edit .material-icons{
+.row-edit .material-icons{
     color:white;
-} */
+}
 .change-row{
     box-shadow: inset 0px 2px 0px rgba(255,255,255,0.58);
     background-image: linear-gradient(-38deg, #65c3db 0%, #3fb1cd 50%, #0b97bb 100%);}
