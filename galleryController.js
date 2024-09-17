@@ -2,7 +2,8 @@
 function renderGallery(imgs){
     var htmlArray = imgs.map(img => `<img id="${img.id}" class="img img${img.id}" src="${img.url}"
         onclick="onImgSelect(${img.id})"/>`)
-    htmlArray.push(`<div class="img upload-img"><input type="file" onchange="onImgInput(event)" style="opacity:0; width:100%; height:100%;"/><p>Upload</p></div>`)
+    htmlArray.unshift(`<div class="img upload-img"><input type="file" onchange="onImgInput(event)" style="opacity:0; width:100%; height:100%;"/><p>Upload</p></div>`)
+    console.log(htmlArray)
     document.querySelector(".meme-display").innerHTML = htmlArray.join('')
     }
     
