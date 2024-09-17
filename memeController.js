@@ -96,10 +96,11 @@ function renderMeme(){
     const meme = getMeme()
     let img = new Image()
     img.src = getImgUrl(meme.selectedImgId)
-    img.onload = () => {
+    return  new Promise((resolve, reject) => 
+        img.onload = () => {
         renderImg(img)
-        drawText()}
-    return img
+        drawText()
+        resolve(8)})
 }
 
 function renderImg(img) {
@@ -159,10 +160,20 @@ function onChangeColor(newColor){
 
 function onDownload(){
     gBackground = false
-    renderMeme()
-    const elLink = document.querySelector(".download-href")
-    const imgContent = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
-    elLink.href = imgContent
+    renderMeme().then(() => {
+        const elLink = document.querySelector(".download-href")
+        elLink.download="my-meme.jpg" 
+        const imgContent = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
+        elLink.href = imgContent
+        elLink.onclick = undefined
+        elLink.click()
+        elLink.onclick = onDownload
+        gBackground = true})
+}
+
+function clearCanvas() {
+    // Clear the entire canvas
+    gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
 }
 
 function onShare(){
@@ -220,4 +231,25 @@ function getEvPos(ev) {
         }
     }
     return pos
+}
+
+function calcDim(imgId){
+    const img = new Image()
+    const url = getImgUrl(imgId)
+    img.onload = () => {
+        const elCnvasContainer = document.querySelector(".canvas-container")
+        const { width: currCanvasWidth, height: currCanvasHeight } = document.querySelector("#my-canvas").getBoundingClientRect()
+        if(window.innerWidth < 850){
+            var newCanvasHeight = img.height * currCanvasWidth / img.width
+            elCnvasContainer.style.height = `${newCanvasHeight}px`
+        }
+        else{
+            var newCanvasWidth = currCanvasHeight * img.width / img.height
+            elCnvasContainer.style.width = `${newCanvasWidth}px`
+            if((currCanvasHeight * img.width / img.height) + document.querySelector(".design-meme").getBoundingClientRect().width > window.innerWidth) {
+                document.querySelector(".design-meme").style.width = `${newCanvasWidth}px`
+            }
+        }       
+    }
+    img.src = url
 }
