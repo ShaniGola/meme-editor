@@ -1,8 +1,9 @@
 
 function renderGallery(imgs){
-    const htmlArray = imgs.map(img => `<img id="${img.id}" class="img img${img.id}" src="${img.url}"
+    var htmlArray = imgs.map(img => `<img id="${img.id}" class="img img${img.id}" src="${img.url}"
         onclick="onImgSelect(${img.id})"/>`)
-        document.querySelector(".meme-display").innerHTML = htmlArray.join('')
+    htmlArray.push(`<div class="img upload-img"><input type="file" onchange="onImgInput(event)" style="opacity:0; width:100%; height:100%;"/><p>Upload</p></div>`)
+    document.querySelector(".meme-display").innerHTML = htmlArray.join('')
     }
     
 function renderSearchedWords(){
@@ -32,5 +33,25 @@ function onOpenModal(){
     document.querySelector("header .more").innerText = document.querySelector("header .more").innerText === "More"? "Less" : "More"
 }
 
+function loadImageFromInput(ev, onImageReady) {
+    const reader = new FileReader()
+    // After we read the file
+    reader.onload = (event) => {
+        let img = new Image() // Create a new html img element
+        img.src = event.target.result // Set the img src to the img file we read
+        // Run the callBack func, To render the img on the canvas
+        img.onload = () => {
+            const imgId = addImg(event.target.result)
+            calcDim(imgId)
+            onImgSelect(imgId)}
+    }
 
+
+    reader.readAsDataURL(ev.target.files[0]) // Read the file we picked
+
+
+}
+function onImgInput(ev) {
+    loadImageFromInput(ev)
+}
 

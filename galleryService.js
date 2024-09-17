@@ -1,6 +1,5 @@
 const COUNTSMAP = "searched words counts map"
 var gImgs = []
-const gPics = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 , 17, 18]
 const gImgsCategories = [['politics', 'funny'], ['dog', 'pets', 'cute'], ['babies', 'dog', 'cute', 'pets'], ['pets', 'cats', 'cute'], ['babies', 'funny'], ['funny'], ['babies', 'cute'], ['man'], ['babies'], ['man', 'politics', 'funny'], ['kiss'], ['man'], ['man', 'cheers'], ['man', 'upset'], ['man'], ['man', 'funny'], ['man', 'politics'], ['cartoon']]
 var gWordSearchCounts;
 
@@ -12,6 +11,11 @@ function createImgs(){
 
 function getImgs(){
     return gImgs
+}
+
+function addImg(path){
+    gImgs.push({id: gImgs.length+1, url: path, keywords: []})
+    return gImgs[gImgs.length-1].id
 }
 
 function searchImgs(searchWord){

@@ -88,6 +88,18 @@ header .more{
     border-radius: 5px;
 }
 
+.upload-img{
+    position:relative;
+    background-color: var(--clr2);
+    text-align: center;
+    aspect-ratio: 1 / 1;
+}
+.upload-img p{
+position:absolute;
+top:50%;
+right:50%;
+transform: translate(50%, -60%);
+}
 .img:hover{
     cursor: pointer;
 }

@@ -36,7 +36,7 @@ function init(){
     }
     renderSearchedWords()
     window.addEventListener('resize', () => {
-        resizeCanvas()
+        // resizeCanvas()
         renderSearchedWords()
     })
     addMouseListeners()
@@ -45,10 +45,12 @@ function init(){
 }
 
 function resizeCanvas(){
+    console.log('resize')
     var cont = document.querySelector(".canvas-container")
     const canvas = document.getElementById("my-canvas")
     canvas.style.width ='100%'
     canvas.style.height='100%'
     canvas.width  = canvas.offsetWidth
     canvas.height = canvas.offsetHeight
+    if(getMeme()) renderMeme()
 }
