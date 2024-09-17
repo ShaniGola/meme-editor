@@ -2,12 +2,12 @@ function onClickGallery(){
     document.querySelector(".gallery").classList.remove("hidden")
     document.querySelector(".editor").classList.add("hidden")
     document.querySelector("#gallery").classList.add("pressed")
-    document.querySelector("text-box").value = ""
 }
 
 function switchDisplay(){
     document.querySelector(".gallery").classList.add("hidden")
     document.querySelector(".editor").classList.remove("hidden")
+    document.querySelector(".text-box").value = ""
     document.querySelector("#gallery").classList.toggle("pressed")
     resizeCanvas()
 }
