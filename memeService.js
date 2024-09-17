@@ -13,9 +13,10 @@ function setLineText(txt){
 function setImg(imgId){
     const selectedImg = gImgs.find(img => img.id === imgId)
     gMeme = {selectedImgId: selectedImg.id,
-        selectedLineIdx: 0 ,font: 'impact',
+        selectedLineIdx: 0 ,font: 'impact', url: selectedImg.url,
         lines: [{txt: '', size: 40, align: 'center', color: '#000000', underline: false, pos: {x: 0, y:0}, drag: false}]}
 }
+
 
 function getImgUrl(imgId){
     const selectedImg = gImgs.find(img => img.id === imgId)

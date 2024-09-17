@@ -160,8 +160,8 @@ function onChangeColor(newColor){
 
 function onDownload(){
     gBackground = false
+    const elLink = document.querySelector(".download-href")
     renderMeme().then(() => {
-        const elLink = document.querySelector(".download-href")
         elLink.download="my-meme.jpg" 
         const imgContent = gElCanvas.toDataURL('image/jpeg') // image/jpeg the default format
         elLink.href = imgContent
