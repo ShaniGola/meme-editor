@@ -2,6 +2,7 @@ function onClickGallery(){
     document.querySelector(".gallery").classList.remove("hidden")
     document.querySelector(".editor").classList.add("hidden")
     document.querySelector("#gallery").classList.add("pressed")
+    document.querySelector("text-box").value = ""
 }
 
 function switchDisplay(){
@@ -46,8 +47,10 @@ function init(){
 
 function resizeCanvas(){
     console.log('resize')
-    var cont = document.querySelector(".canvas-container")
+    const canvasContainer = document.querySelector(".canvas-container")
     const canvas = document.getElementById("my-canvas")
+    canvasContainer.style.height = null
+    canvasContainer.style.width = null
     canvas.style.width ='100%'
     canvas.style.height='100%'
     canvas.width  = canvas.offsetWidth
